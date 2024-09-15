@@ -1,0 +1,45 @@
+.banner-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    border: 1px solid rgb(240, 240, 245);
+    
+   
+}
+
+.banner-slider button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.banner {
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 1400px;
+    height: 400px;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 5px;
+    
+}
+
+#hr1 {
+    border-top: 1px solid #daa520;
+    border-radius: 30px;
+    max-width: 100%;
+    width: 100%;
+    
+
+}
