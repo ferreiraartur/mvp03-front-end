@@ -18,6 +18,33 @@ function Checkout(){
     const [address, setAddress] = useState(null);
     const [error, setError] = useState(null);
 
+    const [couponCode, setCouponCode] = useState('');
+    const [discount, setDiscount] = useState(0);
+
+    const calculateFinalAmount = () => {
+        const discountAmount = (getTotal() * discount) / 100;
+        return getTotal() - discountAmount;
+    };
+
+
+    const handleValidateCoupon = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/promotion?code=${couponCode}`);
+            console.log(response.data)
+            console.log(response.data.valid)
+            if (response.data.valid) {
+                setDiscount(response.data.discount);
+                //setTotal(getTotal() - response.data.discount);
+                setError('');
+            } else {
+                setError('Cupom inválido');
+            }
+        } catch (err) {
+            setError('Erro ao validar o cupom');
+        }
+    };
+    
+
     const handleCepChange = (event) => {
         const newCep = event.target.value;
         setCep(newCep);
@@ -372,15 +399,36 @@ function Checkout(){
                                         <Divider variant="fullWidth" />
                                         
                                         <Typography variant="body1" component="div">
-                                            Subtotal: ${getTotal()}
+                                            Subtotal: R$ {getTotal() }
                                         </Typography>
-                                        
+{/*teste */}
+<CardContent>
+            <Typography variant="h6">Aplicar Cupom de Desconto</Typography>
+            <Divider variant="fullWidth" />
+            <TextField
+                label="Cupom"
+                variant="outlined"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                sx={{ marginRight: '10px' }}
+            />
+            <Button onClick={handleValidateCoupon} variant="contained" color="primary">
+                Validar
+            </Button>
+            {error && <Typography color="error">{error}</Typography>}
+            {discount > 0 && <Typography variant="body1">Desconto: {discount} %</Typography>}
+        </CardContent>
+        
+   {/*teste */}                                     
                                         <Typography variant="h7">
-                                            Desconto: 
+                                            Total: 
                                         </Typography>
+
+
+
                                         <Divider variant="fullWidth" />
                                         <Typography variant="h7">
-                                            R$ ${getTotal()}
+                                            R$  {calculateFinalAmount().toFixed(2)}
                                         </Typography>
                                         
                                         <Toolbar />
