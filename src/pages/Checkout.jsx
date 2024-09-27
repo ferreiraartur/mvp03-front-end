@@ -29,7 +29,7 @@ function Checkout(){
 
     const handleValidateCoupon = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/promotion?code=${couponCode}`);
+            const response = await axios.get(`http://localhost:5000/cupom?code=${couponCode}`);
             console.log(response.data)
             console.log(response.data.valid)
             if (response.data.valid) {
@@ -147,9 +147,7 @@ function Checkout(){
         if (formData.email == ''){
             errors.email = true;
         }
-        if (formData.endereco == ''){
-            errors.endereco = true;
-        }
+       
 
         setErrors(errors);
 
@@ -163,7 +161,7 @@ function Checkout(){
                 nome: '',
                 sobrenome: '',
                 email: '',
-                endereco: '',
+                
             });
             handleOpenModal();
             handleClearCart();
