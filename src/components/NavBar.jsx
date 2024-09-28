@@ -86,11 +86,13 @@ function NavBar() {
 
     return (
       <>
+      
         <React.Fragment>
           <CssBaseline />
             <Box sx={{ flexGrow: 1}}>
               <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                 <Toolbar>
+                  
                   <Stack direction="row" alignItems="center">  
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                       <ThemeProvider theme={theme}>
@@ -124,7 +126,7 @@ function NavBar() {
                       options={options}
                       getOptionLabel={(option) => option.label} // Função para obter o rótulo da opção
                       noOptionsText="Nenhuma opção disponível" 
-                      renderInput={(params) => <TextField {...params} label=" O que gostaria de aprender?"
+                      renderInput={(params) => <TextField {...params} label=" O que gostaria de aprender? teste"
                       
                       InputLabelProps={{
                         style: { textAlign: 'center', color: 'inherit' }, // Estilo para a cor do rótulo
@@ -164,20 +166,14 @@ function NavBar() {
                       />
                      
                   </Stack>
-                   
+                  {/* fim busca */}
 
-{/*
-                    <StyledInputBase
-                      placeholder="O que gostaria de aprender?"
-                      inputProps={{ 'aria-label': 'search' }}
-                      //onChange={handleChange}
-                      sx={{
-                        width: '400px'
-                      }}
-                    />
-                    */}
+                  <Box sx={{ flexGrow: 0 }} />
+                      <Button component={Link} to="/courses" color="inherit">
+                        Cursos
+                      </Button>
                   
-{/* fim busca */}
+                  
 
                   <Box sx={{ flexGrow: 1 }} />
                   <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

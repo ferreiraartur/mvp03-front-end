@@ -25,6 +25,9 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy some imagens for working using docker or development mode
 COPY /src/assets/ /usr/share/nginx/html/src/assets/
 
+# to solve redirect links
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80 to the outside world
 EXPOSE 80
 
