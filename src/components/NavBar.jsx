@@ -126,7 +126,7 @@ function NavBar() {
                       options={options}
                       getOptionLabel={(option) => option.label} // Função para obter o rótulo da opção
                       noOptionsText="Nenhuma opção disponível" 
-                      renderInput={(params) => <TextField {...params} label=" O que gostaria de aprender? teste"
+                      renderInput={(params) => <TextField {...params} label=" O que gostaria de aprender?"
                       
                       InputLabelProps={{
                         style: { textAlign: 'center', color: 'inherit' }, // Estilo para a cor do rótulo
