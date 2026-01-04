@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Outlet, Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import PopoverCart from '../components/PopoverCart';
+import keycloak from '../auth/keycloak'
+
 
 
 
@@ -195,8 +197,27 @@ function NavBar() {
                       <PopoverCart sx={{ p: 2 }}  anchorEl={anchorEl} handleClose={handleClose} id={id}> </PopoverCart>
 
 
-                      <Button sx={{ ...loginStyles, borderRadius: '16px' }} color="inherit">Sign in</Button>
-                      <Button sx={{ ...loginStyles, borderRadius: '16px' }}  color="inherit"><b>Sign up</b></Button>
+                      <Button sx={{ ...loginStyles, borderRadius: '16px' }} color="inherit"
+                        onClick={() => keycloak.login()}
+                      >Sign in</Button>
+                      <Button sx={{ ...loginStyles, borderRadius: '16px' }}  color="inherit"
+                        onClick={() => keycloak.register()}
+                      ><b>Sign up</b></Button>
+
+                      {keycloak.authenticated && (
+                        <Typography sx={{ ml: 2 }}>
+                          Olá, {keycloak.tokenParsed?.preferred_username}
+                        </Typography>
+                      )}
+
+                      <Button
+                        color="inherit"
+                        onClick={() => keycloak.logout()}
+                      >
+                        Logout
+                      </Button>
+
+
             
         
                     </MenuItem>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import BannerSlider from '../components/BannerSlider.jsx'
 import CourseCarousel from '../components/CourseCarousel.jsx';
 import Sentence from '../components/Sentence.jsx';
 import Toolbar from '@mui/material/Toolbar';
+import axios from 'axios'
 
-const courses = [
+/*const courses = [
     {
       id: 1,
       name: 'DevOps',
@@ -44,8 +45,21 @@ const courses = [
     },
     
   ];
+*/
+
+
+
 
 function Home(){
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() =>{
+    axios.get('http://localhost:5000/categories')
+      .then(res => setCategories(res.data.categories))
+      .catch(error => console.log(error))
+  
+  }, [])
 
     return (
         <>
@@ -54,7 +68,7 @@ function Home(){
             <Toolbar />
             <Sentence />
             <Toolbar />
-            <CourseCarousel courses={courses} />
+            <CourseCarousel courses={categories} />
         </>
     )
 }
